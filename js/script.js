@@ -103,15 +103,42 @@ class UI {
                     <td><h5 class="expense-amount mb-0 list-item">${expense.amount}</h5></td>
                     <td>
                         <div class="expense-icons list-item">
-                            <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
+                            <a href="#" class="edit-icon mx-2" data-id="${expense.ID}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="#" class="delete-icon" data-id="${expense.id}">
+                            <a href="#" class="delete-icon" data-id="${expense.ID}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>
                     </td>`;
     this.expenseList.appendChild(tr);
+  }
+
+  editExpense(e) {
+    const id = parseInt(e.dataset.id);
+
+    //Remove element from DOM
+    let parent = e.parentElement.parentElement.parentElement;
+    this.expenseList.removeChild(parent);
+
+    const expense = this.itemList.filter((expense) => {
+      return expense.ID === id;
+    });
+
+    this.expenseInput.value = expense[0].title;
+    this.amountInput.value = expense[0].amount;
+
+    const newItemList = this.itemList.filter(function (expense) {
+      return expense.ID !== id;
+    });
+
+    this.itemList = newItemList;
+    this.showBalance();
+  }
+
+  deleteExpense(e) {
+    e.preventDefault();
+    const id = parseInt(e.dataset.id);
   }
 }
 
@@ -134,7 +161,13 @@ function eventListeners() {
     ui.submitExpenseForm();
   });
 
-  expenseList.addEventListener("click", function () {});
+  expenseList.addEventListener("click", function (e) {
+    if (e.target.parentElement.classList.contains("edit-icon")) {
+      ui.editExpense(e.target.parentElement);
+    } else if (e.target.parentElement.classList.contains("delete-icon")) {
+      ui.deleteExpense(e.target.parentElement);
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
