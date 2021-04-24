@@ -1,3 +1,10 @@
+:root {
+  --mainWhite: #f5f5f5f5;
+  --mainDark: #333333;
+  --mainGreen: #317b22;
+  --mainRed: #b80c09;
+  --mainBlue: #05668d;
+}
 .content-form-budget,
 .content-form-expense {
   padding: 1em 2em;
@@ -9,18 +16,14 @@
   border-color: green;
 }
 .content-form-expense {
-  border-color: #dc3545;
+  border-color: var(--mainRed);
 }
 .budget-icon {
   font-size: 54px;
   color: #090998;
 }
-h4.budget,
-h4.balance {
-  color: green;
-}
 h4.expense {
-  color: red;
+  color: var(--mainRed);
 }
 .box-numbers h4 {
   font-size: 35px;
@@ -35,7 +38,7 @@ h4.expense {
   text-decoration: none;
 }
 a.delete-icon {
-  color: red;
+  color: var(--mainRed);
 }
 .budget-feedback,
 .expense-feedback {
@@ -43,4 +46,14 @@ a.delete-icon {
 }
 .showItem {
   display: block;
+}
+
+.showRed {
+  color: var(--mainRed);
+}
+.showGreen {
+  color: var(--mainGreen);
+}
+.showBlack {
+  color: var(--mainDark);
 }

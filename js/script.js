@@ -36,11 +36,56 @@ class UI {
     const expenses = this.totalExpenses();
     const totalBalance = parseInt(this.budgetAmount.textContent) - expenses;
     this.balanceAmount.textContent = totalBalance;
+
+    if (totalBalance < 0) {
+      this.balance.classList.remove("showGreen", "showBlack");
+      this.balance.classList.add("showRed");
+    } else if (totalBalance > 0) {
+      this.balance.classList.remove("showRed", "showBlack");
+      this.balance.classList.add("showGreen");
+    } else if (totalBalance == 0) {
+      this.balance.classList.remove("showRed", "showGreen");
+      this.balance.classList.add("showBlack");
+    }
+  }
+
+  submitExpenseForm() {
+    const valueExpenseInput = this.expenseInput.value;
+    const valueExpenseAmount = this.amountInput.value;
+
+    if (
+      valueExpenseAmount <= 0 ||
+      valueExpenseInput === "" ||
+      valueExpenseAmount === ""
+    ) {
+      this.expenseFeedback.classList.add("showItem");
+      this.expenseFeedback.innerHTML = `<p>Value cannot be empty or negative</p>`;
+      setTimeout(() => {
+        this.expenseFeedback.classList.remove("showItem");
+      }, 3000);
+    } else {
+      let amount = parseInt(valueExpenseAmount);
+      this.expenseInput.value = "";
+      this.amountInput.value = "";
+
+      const newExpense = {
+        ID: this.itemID,
+        title: valueExpenseInput,
+        amount: amount,
+      };
+
+      this.itemID++;
+      this.itemList.push(newExpense);
+
+      this.addExpense(newExpense);
+    }
   }
 
   totalExpenses() {
     return 400;
   }
+
+  addExpense(expense) {}
 }
 
 function eventListeners() {
@@ -59,6 +104,7 @@ function eventListeners() {
 
   expenseForm.addEventListener("submit", function (e) {
     e.preventDefault();
+    ui.submitExpenseForm();
   });
 
   expenseList.addEventListener("click", function () {});
