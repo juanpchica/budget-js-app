@@ -1,0 +1,13 @@
+.content-form-budget,
+.content-form-expense {
+  padding: 1em 2em;
+  border: 1px solid;
+  margin-bottom: 2em;
+  border-radius: 20px;
+}
+.content-form-budget {
+  border-color: green;
+}
+.content-form-expense {
+  border-color: #dc3545;
+}
