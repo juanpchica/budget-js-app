@@ -85,7 +85,24 @@ class UI {
     return 400;
   }
 
-  addExpense(expense) {}
+  addExpense(expense) {
+    const tr = document.createElement("tr");
+    tr.classList.add("expense-item");
+    tr.innerHTML = `
+                    <td><h6 class="expense-title mb-0 text-uppercase list-item">${expense.title}</h6></td>
+                    <td><h5 class="expense-amount mb-0 list-item">${expense.amount}</h5></td>
+                    <td>
+                        <div class="expense-icons list-item">
+                            <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="delete-icon" data-id="${expense.id}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>`;
+    this.expenseList.appendChild(tr);
+  }
 }
 
 function eventListeners() {
