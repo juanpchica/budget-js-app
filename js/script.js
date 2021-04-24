@@ -78,11 +78,21 @@ class UI {
       this.itemList.push(newExpense);
 
       this.addExpense(newExpense);
+      this.showBalance();
     }
   }
 
   totalExpenses() {
-    return 400;
+    let total = 0;
+    if (this.itemList.length > 0) {
+      total = this.itemList.reduce((acc, crr) => {
+        acc += crr.amount;
+        return acc;
+      }, 0);
+    }
+
+    this.expenseAmount.textContent = total;
+    return total;
   }
 
   addExpense(expense) {
