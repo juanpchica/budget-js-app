@@ -137,8 +137,18 @@ class UI {
   }
 
   deleteExpense(e) {
-    e.preventDefault();
     const id = parseInt(e.dataset.id);
+
+    //Remove element from DOM
+    let parent = e.parentElement.parentElement.parentElement;
+    this.expenseList.removeChild(parent);
+
+    const newItemList = this.itemList.filter(function (expense) {
+      return expense.ID !== id;
+    });
+
+    this.itemList = newItemList;
+    this.showBalance();
   }
 }
 
