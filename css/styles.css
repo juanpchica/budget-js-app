@@ -11,3 +11,29 @@
 .content-form-expense {
   border-color: #dc3545;
 }
+.budget-icon {
+  font-size: 54px;
+  color: #090998;
+}
+h4.budget,
+h4.balance {
+  color: green;
+}
+h4.expense {
+  color: red;
+}
+.box-numbers h4 {
+  font-size: 35px;
+  font-weight: 400;
+}
+.box-numbers {
+  text-align: center;
+  color: #6b6868;
+}
+.expense-icons a {
+  color: gray;
+  text-decoration: none;
+}
+a.delete-icon {
+  color: red;
+}
